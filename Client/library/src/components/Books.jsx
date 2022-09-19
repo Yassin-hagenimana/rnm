@@ -17,18 +17,28 @@ export default function Books() {
       }
       fetchAllBooks();
   },[])
+  const handleDelete=async(id)=>{
+    try {
+      await axios.delete("http://localhost:8080/book/"+id)
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div>
     <h1>Yassin's books shop</h1>
     <div className="books">
     {books.map(book=>(
       <div className="book" key={book.id}>
-      {book.cover && <img src={book.cover} alt="book"/>}
+      {book.cover && <img src={book.cover} alt="book" className='images'/>}
       <h2>{book.title}</h2>
       <p>{book.descriptions}</p>
       <span>{book.price}</span>
-      <button className='delete'>Delete</button>
-      <button className='update'>Update</button>
+      <button className='delete' onClick={()=>handleDelete(book.id)}>Delete</button>
+      <button className='update'>
+      <Link to={`/update/${book.id}`}>Update</Link>
+      </button>
       </div>
   ))}
     </div>

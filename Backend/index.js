@@ -39,6 +39,31 @@ app.post("/books",(req,res)=>{
         return res.json("book has been created successfully")
     })
 })
+app.delete("/book/:id",(req,res)=>{
+    const bookId=req.params.id;
+    const q="DELETE FROM books WHERE id=?"
+    db.query(q,[bookId],(err,data)=>{
+        if(err) res.json(err)
+        return res.json("Book deleted successfully");
+    })
+})
+
+app.put("/book/:id",(req,res)=>{
+    const bookId=req.params.id;
+    const q="UPDATE books SET `title`=?,`descriptions`=?,`price`=?,`cover`=? WHERE id=?";
+    const values=[
+      req.body.title,
+      req.body.cover,
+      req.body.descriptions,
+      req.body.price
+    ]
+    db.query(q,[...values,bookId],(err,data)=>{
+        if(err) res.json(err)
+        return res.json("Book has been updated successfully");
+    })
+})
+
+
 
 app.listen(8080,()=>{
     console.log("connected successfully to backend")

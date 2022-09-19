@@ -38,4 +38,25 @@
         height: 300px;
         object-fit:cover;
         background-color: rgb(203, 238, 227);
+        border: 1px solid blue;
+        margin-left: 10px;
+       }
+       .form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+       }
+
+       input{
+        width: 250px;
+        padding: 10px;
+        border: 1px solid gray;
+       }
+       .formButton{
+        border: none;
+        padding: 10px;
+        background-color: rgb(244, 142, 72);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
        }

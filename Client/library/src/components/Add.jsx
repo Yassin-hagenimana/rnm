@@ -27,14 +27,14 @@ export default function Add() {
 
   }
   return (
-    <div>
+    <div className='form'>
     <h1>Add New Book</h1>
     <input type="text" placeholder="Title" name='title' onChange={handleChange}/>
     <input type="text" placeholder="Description" name='desc' onChange={handleChange}/>
     <input type="text" placeholder="Price" name='price' onChange={handleChange}/>
     <input type="text" placeholder="Cover" name='cover' onChange={handleChange}/>
 
-    <button onClick={handleClick}>Add</button>
+    <button onClick={handleClick} className="formButton">Add</button>
     </div>
   )
 }
