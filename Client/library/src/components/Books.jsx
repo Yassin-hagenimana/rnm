@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
+import {Link} from "react-router-dom"
+import "../styles.css"
 export default function Books() {
   const[books,setBooks]=useState([])
   useEffect(()=>{
@@ -25,10 +27,17 @@ export default function Books() {
       <h2>{book.title}</h2>
       <p>{book.descriptions}</p>
       <span>{book.price}</span>
+      <button className='delete'>Delete</button>
+      <button className='update'>Update</button>
       </div>
   ))}
-
     </div>
+    <button>
+    <Link to="/add">
+    Add new book
+    </Link>
+    
+    </button>
     </div>
   )
 }

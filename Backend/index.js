@@ -27,11 +27,12 @@ app.get("/books",(req,res)=>{
 })
 
 app.post("/books",(req,res)=>{
-    const q="INSERT INTO  books(`title`,`cover`,`descriptions`)VALUES(?)"
+    const q="INSERT INTO  books(`title`,`cover`,`price`,`descriptions`)VALUES(?)"
     const values=[
       req.body.title,
       req.body.cover,
-      req.body.descriptions
+      req.body.descriptions,
+      req.body.price
     ]
     db.query(q,[values],(err,data)=>{
         if(err) return res.json(err)
