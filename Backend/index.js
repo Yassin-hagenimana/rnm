@@ -48,21 +48,22 @@ app.delete("/book/:id",(req,res)=>{
     })
 })
 
-app.put("/book/:id",(req,res)=>{
-    const bookId=req.params.id;
-    const q="UPDATE books SET `title`=?,`descriptions`=?,`price`=?,`cover`=? WHERE id=?";
-    const values=[
-      req.body.title,
-      req.body.cover,
-      req.body.descriptions,
-      req.body.price
-    ]
-    db.query(q,[...values,bookId],(err,data)=>{
-        if(err) res.json(err)
-        return res.json("Book has been updated successfully");
-    })
-})
+app.put("/book/update/:id", (req, res) => {
+  const bookId = req.params.id;
+  const q = "UPDATE books SET `title`= ?, `descriptions`= ?, `price`= ?, `cover`= ? WHERE id = ?";
 
+  const values = [
+    req.body.title,
+    req.body.descriptions,
+    req.body.price,
+    req.body.cover,
+  ];
+
+  db.query(q, [...values,bookId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
 
 
 app.listen(8080,()=>{
